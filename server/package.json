@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "initDB": "node scripts/init.js",
+    "start:mongo": "docker container run rm -f catmatch ; docker container run --name catmatch -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=julix -e MONGO_INITDB_ROOT_PASSWORD=secret -v $(pwd)/data:/data/db -d mongo"
+  }
+}
