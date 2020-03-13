@@ -1,19 +1,26 @@
+require('dotenv').config();
 const MongoClient = require('mongodb').MongoClient;
 const auth = require('../auth.js');
-const url = 'mongodb://localhost:27017';
-const imgJson = require('./cats.json');
+
+const imgCats = require('./cats.json');
 
 let db = null;
 
 const initializeDatabase = async () => {
-  const client = await MongoClient.connect(url, {
+  const client = await MongoClient.connect(process.env.MONGO_URL, {
     auth,
     poolSize: 10,
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    // useUnifiedTopology: true,
   });
   db = client.db('catMash');
+  console.log(db);
 };
+
+const { images } = imgCats;
+const cats = images.map(({ url: image }) => {
+  return { image, catWon: 0, catLost: 0, nbParty: 0 };
+});
 
 const addCatCollection = cats => {
   try {
@@ -34,7 +41,7 @@ const clearCollection = () => {
 const initialise = async () => {
   await initializeDatabase();
   await clearCollection();
-  await addCatCollection(imgJson.images);
+  await addCatCollection(cats);
 };
 
 initialise();

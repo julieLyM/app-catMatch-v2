@@ -1,21 +1,23 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-const getCats = async () => {
-  //   const data = await axios.get(``);
-  //   return data;
-  const data = await Promise.resolve([
-    {
-      name: 'chat1',
-      url: 'http://25.media.tumblr.com/tumblr_m44vnvR00W1rtuomto1_1280.jpg',
-      id: '46o',
-    },
-    {
-      name: 'chat4',
-      url: 'http://25.media.tumblr.com/tumblr_m3jbdxqnma1qa8o34o1_500.jpg',
-      id: 'a4e',
-    },
-  ]);
+export const getCats = async () => {
+  const { data } = await axios.get(`api/v1/cats/`, {
+    params: { count: 10 },
+  });
   return data;
 };
 
-export default getCats;
+export const addPointCat = async (winCatId, lostCatId) => {
+  const { data } = await axios.post(`api/v1/scores/`, {
+    winCatId,
+    lostCatId,
+  });
+  return data;
+};
+
+export const getScores = async () => {
+  const { data } = await axios.get(`api/v1/scores/`, {
+    params: { count: 5 },
+  });
+  return data;
+};

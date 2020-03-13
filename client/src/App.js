@@ -1,12 +1,18 @@
 import React from 'react';
-import CatsMatch from './components/CatsMatch.js';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import { CatsMatch } from './components/CatsMatch.js';
+import { ScoresCat } from './components/ScoresCat';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <CatsMatch />
-    </div>
+    <Router>
+      <div className="App">
+        <Route exact path="/" component={CatsMatch} />
+        <Route path="/ScoresCat" component={ScoresCat} />
+      </div>
+    </Router>
   );
 }
 
