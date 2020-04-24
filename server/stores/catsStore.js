@@ -15,7 +15,6 @@ const initializeDatabase = async () => {
 };
 
 const getCat = count => {
-  console.log(count);
   const data = db
     .collection('cats')
     .find()

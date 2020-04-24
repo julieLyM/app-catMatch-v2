@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-
 import { getScores } from '../service/catsData';
+import {
+  ContainerHome,
+  SubTitle,
+  DesignLink,
+  Title,
+} from './style/catsMatchStyle';
+import arrow from './style/arrow.png';
 
 export const ScoresCat = () => {
   const [scores, setScores] = useState([]);
@@ -15,18 +20,43 @@ export const ScoresCat = () => {
   }, []);
 
   return (
-    <div>
-      <h1>TOP 5 cats</h1>
+    <ContainerHome>
+      <Title>TOP 5 cats</Title>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          marginLeft: '40px',
+        }}
+      >
+        <SubTitle>cats</SubTitle>
+        <SubTitle>points</SubTitle>
+      </div>
+
       {scores.map((score, i) => (
-        <div key={i}>
-          <img src={score.image} alt="cat on list" style={{ width: '100px' }} />{' '}
-          {''}
-          {score.catWon}
+        <div
+          key={i}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            {' '}
+            <img
+              src={score.image}
+              alt="cat on list"
+              style={{ width: '100px' }}
+            />
+          </div>
+
+          <Title>{score.catWon}</Title>
         </div>
       ))}
-      <Link to="/">
-        <h1>return</h1>
-      </Link>
-    </div>
+      <DesignLink to="/">
+        <img src={arrow} style={{ marginTop: '20px', width: '50px' }} alt="back to choose a cat"/>
+      </DesignLink>
+    </ContainerHome>
   );
 };

@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Cat } from './Cat';
 import { getCats, addPointCat } from '../service/catsData';
 import {
   ContainerHome,
-  ContainerBloc,
-  CatPicture,
+  ContainerPic,
+  ImgPodium,
+  DesignLink,
+  Title,
+  Text,
 } from './style/catsMatchStyle';
+import podium from './style/podium.png';
 
 export const CatsMatch = () => {
   const [cats, setCats] = useState([]);
@@ -15,7 +18,7 @@ export const CatsMatch = () => {
   useEffect(() => {
     const fetchCats = async () => {
       const data = await getCats();
-      setCats(oldData => [
+      setCats((oldData) => [
         ...oldData,
         ...data.slice(oldData.length === 0 ? 0 : 4),
       ]);
@@ -26,7 +29,7 @@ export const CatsMatch = () => {
   }, [index]);
 
   const increment = () => {
-    setIndex(oldIndex => oldIndex + 2);
+    setIndex((oldIndex) => oldIndex + 2);
   };
 
   const update = (winCatId, lostCatId) => {
@@ -34,24 +37,26 @@ export const CatsMatch = () => {
     addPointCat(winCatId, lostCatId);
   };
 
-  console.log(index);
   return (
     <ContainerHome>
-      <h1>Choose your favorite cat</h1>
-      <ContainerBloc>
-        <CatPicture>
-          <Cat cats={cats[index]} update={update} catLoser={cats[index + 1]} />
-        </CatPicture>
+      <Title>Choose your favorite cat</Title>
 
-        <CatPicture>
+      <ContainerPic>
+        <div>
+          <Cat cats={cats[index]} update={update} catLoser={cats[index + 1]} />
+          <Text>Cat 1</Text>
+        </div>
+        <div>
+          <Title>VS</Title>
+        </div>
+        <div>
           <Cat cats={cats[index + 1]} update={update} catLoser={cats[index]} />
-        </CatPicture>
-      </ContainerBloc>
-      <div>
-        <Link to="/ScoresCat">
-          <h4>classement</h4>
-        </Link>
-      </div>
+          <Text>Cat 2</Text>
+        </div>
+      </ContainerPic>
+      <DesignLink to="/ScoresCat">
+        <ImgPodium src={podium} alt="go to score page" />
+      </DesignLink>
     </ContainerHome>
   );
 };
