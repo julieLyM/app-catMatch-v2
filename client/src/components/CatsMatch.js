@@ -9,7 +9,7 @@ import {
   Title,
   Text,
 } from './style/catsMatchStyle';
-import podium from './style/podium.png';
+import podium from './style/score.svg';
 
 export const CatsMatch = () => {
   const [cats, setCats] = useState([]);
@@ -54,9 +54,9 @@ export const CatsMatch = () => {
           <Text>Cat 2</Text>
         </div>
       </ContainerPic>
-      <DesignLink to="/ScoresCat">
-        <ImgPodium src={podium} alt="go to score page" />
-      </DesignLink>
+        <DesignLink to="/ScoresCat">
+          <ImgPodium src={podium} alt="go to score page" />
+        </DesignLink>
     </ContainerHome>
   );
 };

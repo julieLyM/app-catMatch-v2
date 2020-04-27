@@ -74,12 +74,15 @@ export const ContainerCatPage = styled.div`
 `;
 
 export const CatFlex = styled.div`
-  flex:  1 150px;
+  flex: 1 150px;
 `;
 
 export const CatImg = styled.img`
   width: 70%;
   border-radius: 50px;
+  @media (${device.mobileL}) {
+    font-size: 100%;
+  }
 `;
 ////////// score.js
 

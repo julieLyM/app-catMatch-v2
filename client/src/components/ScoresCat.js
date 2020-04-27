@@ -50,12 +50,15 @@ export const ScoresCat = () => {
               style={{ width: '100px' }}
             />
           </div>
-
           <Title>{score.catWon}</Title>
         </div>
       ))}
       <DesignLink to="/">
-        <img src={arrow} style={{ marginTop: '20px', width: '50px' }} alt="back to choose a cat"/>
+        <img
+          src={arrow}
+          style={{ marginTop: '20px', width: '50px' }}
+          alt="back to choose a cat"
+        />
       </DesignLink>
     </ContainerHome>
   );
